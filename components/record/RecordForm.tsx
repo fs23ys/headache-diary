@@ -131,13 +131,22 @@ export function RecordForm({ initialData, defaultDate, onSubmit, onCancel }: Pro
       {/* 日時・持続時間 */}
       <Section icon={<CalendarDays className="w-4 h-4" />} title="日時・持続時間">
         <div className="space-y-2">
-          <input
-            type="datetime-local"
-            value={formatDatetimeLocal(occurredAt)}
-            onChange={e => setOccurredAt(new Date(e.target.value))}
-            required
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base bg-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
-          />
+          <div className="flex gap-2">
+            <input
+              type="datetime-local"
+              value={formatDatetimeLocal(occurredAt)}
+              onChange={e => setOccurredAt(new Date(e.target.value))}
+              required
+              className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-base bg-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            />
+            <button
+              type="button"
+              onClick={() => setOccurredAt(new Date())}
+              className="px-4 py-3 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700 text-sm font-medium whitespace-nowrap active:bg-indigo-100"
+            >
+              今すぐ
+            </button>
+          </div>
           <div className="relative">
             <select
               value={durationMinutes ?? ''}
