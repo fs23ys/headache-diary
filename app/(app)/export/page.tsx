@@ -88,8 +88,8 @@ function computeSummary(records: HeadacheRecord[], startDate: Date, endDate: Dat
     r.triggers?.forEach(t => triggerMap.set(t, (triggerMap.get(t) ?? 0) + 1));
     r.symptoms?.forEach(s => symptomMap.set(s, (symptomMap.get(s) ?? 0) + 1));
   });
-  const topTriggers = [...triggerMap.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
-  const topSymptoms = [...symptomMap.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4);
+  const topTriggers = Array.from(triggerMap.entries()).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  const topSymptoms = Array.from(symptomMap.entries()).sort((a, b) => b[1] - a[1]).slice(0, 4);
 
   const medRecs = records.filter(r => r.medicationUsed);
   const medDays = new Set(medRecs.map(r => format(r.occurredAt, 'yyyy-MM-dd'))).size;
@@ -101,8 +101,8 @@ function computeSummary(records: HeadacheRecord[], startDate: Date, endDate: Dat
     medNameMap.set(n, (medNameMap.get(n) ?? 0) + 1);
     if (r.medicationEffect) effectMap.set(r.medicationEffect, (effectMap.get(r.medicationEffect) ?? 0) + 1);
   });
-  const topMeds = [...medNameMap.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3);
-  const effectDist = [...effectMap.entries()].sort((a, b) => b[1] - a[1]);
+  const topMeds = Array.from(medNameMap.entries()).sort((a, b) => b[1] - a[1]).slice(0, 3);
+  const effectDist = Array.from(effectMap.entries()).sort((a, b) => b[1] - a[1]);
 
   const topSevere = [...records].sort((a, b) => b.intensity - a.intensity || b.occurredAt.getTime() - a.occurredAt.getTime()).slice(0, 3);
 
