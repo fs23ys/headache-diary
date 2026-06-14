@@ -1,28 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#222" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Background white -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <rect width="100" height="100" fill="white"/>
 
-  <!-- Spiky hair -->
-  <path d="M28 45 L22 22 L33 38 L37 16 L44 35 L50 8 L56 35 L63 16 L67 38 L78 22 L72 45"
-        stroke="#222" stroke-width="3" fill="#222"/>
+  <!-- Starburst hair (radiating from top of head) -->
+  <g stroke="#1a1a1a" stroke-width="2.5">
+    <line x1="50" y1="33" x2="50" y2="5"/>
+    <line x1="50" y1="33" x2="30" y2="10"/>
+    <line x1="50" y1="33" x2="14" y2="22"/>
+    <line x1="50" y1="33" x2="70" y2="10"/>
+    <line x1="50" y1="33" x2="86" y2="22"/>
+    <line x1="50" y1="33" x2="12" y2="40"/>
+    <line x1="50" y1="33" x2="88" y2="40"/>
+  </g>
 
-  <!-- Face outline -->
-  <ellipse cx="50" cy="65" rx="28" ry="30" fill="white" stroke="#222" stroke-width="3"/>
+  <!-- Face circle -->
+  <circle cx="50" cy="64" r="31" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
 
-  <!-- Left eyebrow (angry, tilted) -->
-  <path d="M30 52 Q38 47 43 51" stroke="#222" stroke-width="2.5"/>
+  <!-- Anger marks (upper left and right of face) -->
+  <!-- Left ✳ -->
+  <g stroke="#1a1a1a" stroke-width="1.8">
+    <line x1="19" y1="48" x2="26" y2="48"/>
+    <line x1="22.5" y1="44.5" x2="22.5" y2="51.5"/>
+    <line x1="20" y1="46" x2="25" y2="51"/>
+    <line x1="25" y1="46" x2="20" y2="51"/>
+  </g>
+  <!-- Right ✳ -->
+  <g stroke="#1a1a1a" stroke-width="1.8">
+    <line x1="74" y1="48" x2="81" y2="48"/>
+    <line x1="77.5" y1="44.5" x2="77.5" y2="51.5"/>
+    <line x1="75" y1="46" x2="80" y2="51"/>
+    <line x1="80" y1="46" x2="75" y2="51"/>
+  </g>
 
-  <!-- Right eyebrow (angry, tilted) -->
-  <path d="M57 51 Q62 47 70 52" stroke="#222" stroke-width="2.5"/>
+  <!-- Left eye × -->
+  <g stroke="#1a1a1a" stroke-width="2.8">
+    <line x1="33" y1="55" x2="44" y2="66"/>
+    <line x1="44" y1="55" x2="33" y2="66"/>
+  </g>
 
-  <!-- Left eye X -->
-  <line x1="31" y1="57" x2="41" y2="66" stroke="#222" stroke-width="2.5"/>
-  <line x1="41" y1="57" x2="31" y2="66" stroke="#222" stroke-width="2.5"/>
+  <!-- Right eye × -->
+  <g stroke="#1a1a1a" stroke-width="2.8">
+    <line x1="56" y1="55" x2="67" y2="66"/>
+    <line x1="67" y1="55" x2="56" y2="66"/>
+  </g>
 
-  <!-- Right eye X -->
-  <line x1="59" y1="57" x2="69" y2="66" stroke="#222" stroke-width="2.5"/>
-  <line x1="69" y1="57" x2="59" y2="66" stroke="#222" stroke-width="2.5"/>
-
-  <!-- Frown mouth -->
-  <path d="M37 82 Q50 76 63 82" stroke="#222" stroke-width="2.5"/>
+  <!-- Frown -->
+  <path d="M37 80 Q50 74 63 80" stroke="#1a1a1a" stroke-width="2.2"/>
 </svg>
