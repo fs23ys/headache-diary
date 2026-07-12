@@ -55,16 +55,17 @@ export function MonthCalendar({ year, month, records, onSelectDate }: Props) {
   const today = new Date();
 
   return (
-    <div className="px-2 pt-2">
+    <div className="px-1 pt-1">
       {/* Day of week header */}
-      <div className="grid grid-cols-7 mb-1">
+      <div className="grid grid-cols-7 mb-0.5">
         {DOW.map((d, i) => (
           <div
             key={d}
             className={cn(
-              'text-center text-xs font-medium py-1',
+              'text-center font-medium py-0.5',
               i === 0 ? 'text-rose-400' : i === 6 ? 'text-indigo-400' : 'text-gray-500',
             )}
+            style={{ fontSize: '0.65rem' }}
           >
             {d}
           </div>
@@ -72,7 +73,7 @@ export function MonthCalendar({ year, month, records, onSelectDate }: Props) {
       </div>
 
       {/* Calendar grid */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7" style={{ gap: '2px' }}>
         {cells.map((cell, idx) => {
           if (!cell) {
             return <div key={`empty-${idx}`} className="aspect-square" />;
@@ -92,7 +93,7 @@ export function MonthCalendar({ year, month, records, onSelectDate }: Props) {
               onClick={() => hasRecord && onSelectDate(date)}
               disabled={!hasRecord}
               className={cn(
-                'aspect-square flex flex-col items-center justify-center rounded-lg relative transition-opacity',
+                'aspect-square flex flex-col items-center justify-center rounded-md relative transition-opacity',
                 getIntensityBg(maxIntensity),
                 hasRecord ? 'cursor-pointer active:opacity-70' : 'cursor-default',
                 isToday && 'ring-2 ring-indigo-400',
@@ -100,21 +101,22 @@ export function MonthCalendar({ year, month, records, onSelectDate }: Props) {
             >
               <span
                 className={cn(
-                  'text-sm font-medium leading-tight',
+                  'font-medium leading-tight',
                   dow === 0 ? 'text-rose-500' : dow === 6 ? 'text-indigo-500' : 'text-gray-700',
                   maxIntensity >= 7 && 'text-rose-800',
                 )}
+                style={{ fontSize: '0.75rem' }}
               >
                 {date.getDate()}
               </span>
               {hasRecord && (
-                <span className="text-base leading-tight">
+                <span className="text-xs leading-tight">
                   {getIntensityEmoji(maxIntensity)}
                 </span>
               )}
               {hasMedication && (
                 <span
-                  className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full bg-indigo-500"
+                  className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-indigo-500"
                   title="痛み止め使用"
                 />
               )}
