@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { BottomNav } from '@/components/layout/BottomNav';
+import { RecordsProvider } from '@/contexts/RecordsContext';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -30,9 +31,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen pb-20 max-w-[680px] mx-auto">
-      {children}
-      <BottomNav />
-    </div>
+    <RecordsProvider>
+      <div className="min-h-screen pb-20 max-w-[680px] mx-auto">
+        {children}
+        <BottomNav />
+      </div>
+    </RecordsProvider>
   );
 }

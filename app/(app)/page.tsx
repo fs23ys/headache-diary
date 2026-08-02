@@ -6,12 +6,16 @@ import { ja } from 'date-fns/locale';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getRecordsForMonth } from '@/lib/firestore';
+import { useRecordsCache } from '@/contexts/RecordsContext';
 import { MonthCalendar } from '@/components/calendar/MonthCalendar';
 import { RecordDetail } from '@/components/record/RecordDetail';
 import type { HeadacheRecord } from '@/types';
 
+const STALE_MS = 30_000;
+
 export default function HomePage() {
   const { user } = useAuth();
+  const { getCache, setCache, invalidate } = useRecordsCache();
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const [records, setRecords] = useState<HeadacheRecord[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,17 +23,25 @@ export default function HomePage() {
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
+  const cacheKey = `${year}-${month}`;
 
-  const fetchRecords = useCallback(async () => {
+  const fetchRecords = useCallback(async (force = false) => {
     if (!user) return;
+    const cached = getCache(cacheKey);
+    if (!force && cached && Date.now() - cached.fetchedAt < STALE_MS) {
+      setRecords(cached.records);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     try {
       const data = await getRecordsForMonth(user.uid, year, month);
       setRecords(data);
+      setCache(cacheKey, data);
     } finally {
       setLoading(false);
     }
-  }, [user, year, month]);
+  }, [user, year, month, cacheKey, getCache, setCache]);
 
   useEffect(() => {
     fetchRecords();
@@ -120,7 +132,7 @@ export default function HomePage() {
           date={selectedDate}
           records={selectedDayRecords}
           onClose={() => setSelectedDate(null)}
-          onRefresh={fetchRecords}
+          onRefresh={() => { invalidate(cacheKey); fetchRecords(true); }}
         />
       )}
     </>
