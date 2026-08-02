@@ -30,7 +30,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen pb-20 max-w-lg mx-auto overflow-x-hidden">
+    <div className="min-h-screen pb-20 max-w-[680px] mx-auto">
       {children}
       <BottomNav />
     </div>

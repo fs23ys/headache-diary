@@ -71,8 +71,7 @@ export default function HomePage() {
       </div>
 
       {/* Calendar */}
-      <div className="mt-3 bg-white border-y border-gray-100 shadow-sm p-2"
-        style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
+      <div className="mx-0 mt-3 bg-white border-y border-gray-100 shadow-sm p-3">
         {loading ? (
           <div className="flex justify-center items-center h-48 text-gray-400 text-sm">
             読み込み中...
