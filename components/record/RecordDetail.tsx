@@ -80,7 +80,7 @@ export function RecordDetail({ date, records, onClose, onRefresh }: Props) {
                 record={record}
                 onEdit={() => {
                   onClose();
-                  router.push(`/record/${record.id}/edit`);
+                  router.push(`/record/edit?id=${record.id}`);
                 }}
                 onDelete={() => handleDelete(record.id)}
                 deleting={deleting === record.id}
